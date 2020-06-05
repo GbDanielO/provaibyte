@@ -49,6 +49,10 @@ public class Pessoa implements Serializable {
 	@Column(name = "dt_admissao")
 	private Date dtAdmissao;
 
+	@Temporal(TemporalType.DATE)
+	@Column(name = "dt_demissao")
+	private Date dtDemissao;
+
 	@JsonIgnoreProperties("pessoa")
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "pessoa")
 	private List<FuncaoPessoa> lstFuncaoPessoa;
@@ -116,6 +120,14 @@ public class Pessoa implements Serializable {
 
 	public void setDtAdmissao(Date dtAdmissao) {
 		this.dtAdmissao = dtAdmissao;
+	}
+
+	public Date getDtDemissao() {
+		return dtDemissao;
+	}
+
+	public void setDtDemissao(Date dtDemissao) {
+		this.dtDemissao = dtDemissao;
 	}
 
 	public List<FuncaoPessoa> getLstFuncaoPessoa() {

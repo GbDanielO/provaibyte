@@ -1,0 +1,768 @@
+{
+	"info": {
+		"_postman_id": "8d881e97-c4a5-43e3-aed5-43cd6a2ac3c4",
+		"name": "ibyte",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "cria funcoes",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "IbytePasswod",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ibyteSistems",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"descricao\": \"Programador\",\n\t\"nivelFuncao\": \"PLENO\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/funcoes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"funcoes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cria funcoes (2)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2aa1cda0-4c09-41c5-a7b4-5c51e9e27f8e",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "IbytePasswod",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ibyteSistems",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"descricao\": \"Analista de Sistema\",\n\t\"nivelFuncao\": \"SENIOR\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/funcoes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"funcoes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cria funcoes (3)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1d90ba64-995b-42ac-99b0-3810fa926cc7",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});",
+							"",
+							"pm.globals.set(\"funcaoRH\", postman.getResponseHeader(\"Location\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "IbytePasswod",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ibyteSistems",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"descricao\": \"Analista de RH\",\n\t\"nivelFuncao\": \"SENIOR\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/funcoes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"funcoes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "busca funcao RH criada",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "IbytePasswod",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ibyteSistems",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{funcaoRH}}",
+					"host": [
+						"{{funcaoRH}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get funcoes ",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "IbytePasswod",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ibyteSistems",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/funcoes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"funcoes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "criar setores",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "IbytePasswod",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ibyteSistems",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "utf8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"descricao\": \"TIC\",\n\t\"flgAtivo\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/setores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"setores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "criar setores 2",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "IbytePasswod",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ibyteSistems",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "utf8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"descricao\": \"RH\",\n\t\"flgAtivo\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/setores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"setores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "criar setores 3",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "IbytePasswod",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ibyteSistems",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "utf8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"descricao\": \"Contábil\",\n\t\"flgAtivo\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/setores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"setores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get setores",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "IbytePasswod",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ibyteSistems",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "utf8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/setores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"setores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "criar pessoas",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "IbytePasswod",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ibyteSistems",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\": \"Joana\",\n\t\"cpf\": \"04624554310\",\n\t\"email\": \"joanaj@hotmail.com\",\n\t\"dtAdmissao\": \"2020-06-05\",\n\t\"lstFuncaoPessoa\": [{\n\t\t\"funcao\": {\n\t\t\t\"id\": 3\n\t\t},\n\t\t\"setor\": {\n\t\t\t\"id\": 2\n\t\t},\n\t\t\"dtInicio\": \"2020-06-05\",\n\t\t\"salario\": 2000.0\n\t}]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/pessoas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"pessoas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "criar pessoas 2",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "IbytePasswod",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ibyteSistems",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept-Encoding",
+						"type": "text",
+						"value": "utf-8"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\": \"Maria\",\n\t\"cpf\": \"12324554310\",\n\t\"email\": \"maria@hotmail.com\",\n\t\"dtAdmissao\": \"2020-06-05\",\n\t\"lstFuncaoPessoa\": [{\n\t\t\"funcao\": {\n\t\t\t\"id\": 3\n\t\t},\n\t\t\"setor\": {\n\t\t\t\"id\": 2\n\t\t},\n\t\t\"dtInicio\": \"2020-06-05\",\n\t\t\"salario\": 2000.0\n\t}]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/pessoas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"pessoas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "criar pessoas 3",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "IbytePasswod",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ibyteSistems",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept-Encoding",
+						"type": "text",
+						"value": "utf-8"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\": \"Manel\",\n\t\"cpf\": \"56724554360\",\n\t\"email\": \"manel@hotmail.com\",\n\t\"dtAdmissao\": \"2020-06-05\",\n\t\"lstFuncaoPessoa\": [{\n\t\t\"funcao\": {\n\t\t\t\"id\": 2\n\t\t},\n\t\t\"setor\": {\n\t\t\t\"id\": 1\n\t\t},\n\t\t\"dtInicio\": \"2020-06-05\",\n\t\t\"salario\": 5000.0\n\t}]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/pessoas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"pessoas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get pessoas",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/pessoas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"pessoas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pessoas filter by setor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c4c310c5-a949-48fc-9f9b-f2fbfea539c2",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "IbytePasswod",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ibyteSistems",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"setor\": {\n\t\t\"id\": 2\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/pessoas/filter",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"pessoas",
+						"filter"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete pessoas",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "IbytePasswod",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ibyteSistems",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept-Encoding",
+						"type": "text",
+						"value": "utf-8"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/pessoas/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"pessoas",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

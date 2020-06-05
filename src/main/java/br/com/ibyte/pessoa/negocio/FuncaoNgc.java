@@ -79,7 +79,12 @@ public class FuncaoNgc {
 	}
 
 	public void delete(Long codigo) {
-		this.funcaoRepository.deleteById(codigo);
+		try {
+			this.funcaoRepository.deleteById(codigo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao deletar função: devido as dependencias. " + e.getCause());
+		}
 	}
 
 	public Optional<Funcao> buscarFuncaoPeloCodigo(Long codigo) {

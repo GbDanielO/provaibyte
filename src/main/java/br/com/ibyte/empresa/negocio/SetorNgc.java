@@ -63,7 +63,13 @@ public class SetorNgc {
 	}
 
 	public void delete(Long codigo) {
-		this.setorRepository.deleteById(codigo);
+		try {
+			this.setorRepository.deleteById(codigo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(
+					"Erro ao deletar setor: Talvez consiga apenas inativar devido as dependencias. " + e.getCause());
+		}
 	}
 
 }

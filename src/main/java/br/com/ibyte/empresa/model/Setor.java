@@ -35,6 +35,8 @@ public class Setor implements Serializable {
 	@JoinColumn(name = "id_pessoa")
 	private Pessoa responsavel;
 
+	private Boolean flgAtivo;
+
 	public Setor() {
 
 	}
@@ -67,6 +69,14 @@ public class Setor implements Serializable {
 
 	public void setResponsavel(Pessoa responsavel) {
 		this.responsavel = responsavel;
+	}
+
+	public Boolean getFlgAtivo() {
+		return flgAtivo;
+	}
+
+	public void setFlgAtivo(Boolean flgAtivo) {
+		this.flgAtivo = flgAtivo;
 	}
 
 	@Override

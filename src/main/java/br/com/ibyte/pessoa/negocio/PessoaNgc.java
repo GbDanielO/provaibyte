@@ -97,7 +97,14 @@ public class PessoaNgc {
 	}
 
 	public void delete(Long codigo) {
-		this.pessoaRepository.deleteById(codigo);
+		try {
+			this.pessoaRepository.deleteById(codigo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(
+					"Erro ao deletar pessoa: Talvez consiga apenas adicionar uma data de demissão devido as dependencias. "
+							+ e.getCause());
+		}
 	}
 
 	public Optional<Pessoa> buscarPessoaPeloCodigo(Long codigo) {
