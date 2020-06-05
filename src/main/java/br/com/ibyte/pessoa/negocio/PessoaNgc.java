@@ -46,40 +46,54 @@ public class PessoaNgc {
 	@Transactional
 	public Pessoa criar(Pessoa pessoa, HttpServletResponse response) {
 
-		// verifica preenchimento das composições
-		FuncaoPessoa funcaoPessoa = pessoa.getFuncaoPessoa();
-		if (funcaoPessoa != null) {
-			funcaoPessoa.setPessoa(pessoa);
+		try {
+			// verifica preenchimento das composições
+			if (pessoa.getLstFuncaoPessoa() != null && !pessoa.getLstFuncaoPessoa().isEmpty()) {
+				for (FuncaoPessoa funcaoPessoa : pessoa.getLstFuncaoPessoa()) {
+					if (funcaoPessoa != null) {
+						funcaoPessoa.setPessoa(pessoa);
+					}
+				}
+			}
+
+			Pessoa pessoaSalva = this.pessoaRepository.save(pessoa);
+
+			URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}")
+					.buildAndExpand(pessoaSalva.getId()).toUri();
+
+			response.setHeader("Location", uri.toASCIIString());
+
+			return pessoaSalva;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao salvar pessoa: " + e.getCause());
 		}
-
-		Pessoa pessoaSalva = this.pessoaRepository.save(pessoa);
-
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}")
-				.buildAndExpand(pessoaSalva.getId()).toUri();
-
-		response.setHeader("Location", uri.toASCIIString());
-
-		return pessoaSalva;
 	}
 
 	@Transactional
 	public Pessoa atualizar(Long codigo, Pessoa pessoa, HttpServletResponse response) {
 
-		// verifica preenchimento das composições
-		FuncaoPessoa funcaoPessoa = pessoa.getFuncaoPessoa();
-		if (funcaoPessoa != null) {
-			funcaoPessoa.setPessoa(pessoa);
+		try {
+			// verifica preenchimento das composições
+			if (pessoa.getLstFuncaoPessoa() != null && !pessoa.getLstFuncaoPessoa().isEmpty()) {
+				for (FuncaoPessoa funcaoPessoa : pessoa.getLstFuncaoPessoa()) {
+					funcaoPessoa.setPessoa(pessoa);
+				}
+			}
+
+			Optional<Pessoa> optional = this.pessoaRepository.findById(codigo);
+
+			if (!optional.isPresent()) {
+				throw new EmptyResultDataAccessException(1);
+			}
+
+			Pessoa pessoaSalva = this.pessoaRepository.save(pessoa);
+
+			return pessoaSalva;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao atualizar pessoa: " + e.getCause());
 		}
-
-		Optional<Pessoa> optional = this.pessoaRepository.findById(codigo);
-
-		if (!optional.isPresent()) {
-			throw new EmptyResultDataAccessException(1);
-		}
-
-		Pessoa pessoaSalva = this.pessoaRepository.save(pessoa);
-
-		return pessoaSalva;
 	}
 
 	public void delete(Long codigo) {
@@ -93,7 +107,7 @@ public class PessoaNgc {
 	public List<Pessoa> getPessoas(Pessoa pessoa) {
 
 		if (pessoa.getSetor() != null) {
-			return this.pessoaRepository.findByFuncaoPessoa_Setor_Id(pessoa.getSetor().getId());
+			return this.pessoaRepository.buscarPessoasPorSetor(pessoa.getSetor().getId());
 		}
 		return null;
 	}

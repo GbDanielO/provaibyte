@@ -2,6 +2,7 @@ package br.com.ibyte.pessoa.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,8 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -50,9 +50,8 @@ public class Pessoa implements Serializable {
 	private Date dtAdmissao;
 
 	@JsonIgnoreProperties("pessoa")
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_funcao_pessoa")
-	private FuncaoPessoa funcaoPessoa;
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "pessoa")
+	private List<FuncaoPessoa> lstFuncaoPessoa;
 
 	@Transient
 	private Setor setor;
@@ -61,14 +60,14 @@ public class Pessoa implements Serializable {
 	}
 
 	public Pessoa(String nome, String email, String cpf, Date dtNascimento, Date dtAdmissao,
-			FuncaoPessoa funcaoPessoa) {
+			List<FuncaoPessoa> lstFuncaoPessoa) {
 		super();
 		this.nome = nome;
 		this.email = email;
 		this.cpf = cpf;
 		this.dtNascimento = dtNascimento;
 		this.dtAdmissao = dtAdmissao;
-		this.funcaoPessoa = funcaoPessoa;
+		this.lstFuncaoPessoa = lstFuncaoPessoa;
 	}
 
 	public Long getId() {
@@ -119,12 +118,12 @@ public class Pessoa implements Serializable {
 		this.dtAdmissao = dtAdmissao;
 	}
 
-	public FuncaoPessoa getFuncaoPessoa() {
-		return funcaoPessoa;
+	public List<FuncaoPessoa> getLstFuncaoPessoa() {
+		return lstFuncaoPessoa;
 	}
 
-	public void setFuncaoPessoa(FuncaoPessoa funcaoPessoa) {
-		this.funcaoPessoa = funcaoPessoa;
+	public void setLstFuncaoPessoa(List<FuncaoPessoa> lstFuncaoPessoa) {
+		this.lstFuncaoPessoa = lstFuncaoPessoa;
 	}
 
 	@JsonIgnore

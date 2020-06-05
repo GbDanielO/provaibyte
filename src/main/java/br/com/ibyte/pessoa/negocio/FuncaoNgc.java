@@ -40,32 +40,42 @@ public class FuncaoNgc {
 	@Transactional
 	public Funcao criar(Funcao funcao, HttpServletResponse response) {
 
-		// verifica preenchimento das composições
+		try {
+			// verifica preenchimento das composições
 
-		Funcao funcaoSalva = this.funcaoRepository.save(funcao);
+			Funcao funcaoSalva = this.funcaoRepository.save(funcao);
 
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}")
-				.buildAndExpand(funcaoSalva.getId()).toUri();
+			URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}")
+					.buildAndExpand(funcaoSalva.getId()).toUri();
 
-		response.setHeader("Location", uri.toASCIIString());
+			response.setHeader("Location", uri.toASCIIString());
 
-		return funcaoSalva;
+			return funcaoSalva;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao salvar Função: " + e.getCause());
+		}
 	}
 
 	@Transactional
 	public Funcao atualizar(Long codigo, Funcao funcao, HttpServletResponse response) {
 
-		// verifica preenchimento das composições
+		try {
+			// verifica preenchimento das composições
 
-		Optional<Funcao> optional = this.funcaoRepository.findById(codigo);
+			Optional<Funcao> optional = this.funcaoRepository.findById(codigo);
 
-		if (!optional.isPresent()) {
-			throw new EmptyResultDataAccessException(1);
+			if (!optional.isPresent()) {
+				throw new EmptyResultDataAccessException(1);
+			}
+
+			Funcao funcaoSalva = this.funcaoRepository.save(funcao);
+
+			return funcaoSalva;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao atualizar Função: " + e.getCause());
 		}
-
-		Funcao funcaoSalva = this.funcaoRepository.save(funcao);
-
-		return funcaoSalva;
 	}
 
 	public void delete(Long codigo) {

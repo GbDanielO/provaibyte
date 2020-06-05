@@ -1,7 +1,5 @@
 package br.com.ibyte.pessoa.repository;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.ibyte.pessoa.model.Pessoa;
@@ -16,8 +14,6 @@ import br.com.ibyte.pessoa.model.Pessoa;
  *         pode ser copiada sem autorização expressa para quaisquer fins.
  */
 public interface PessoaRepository extends JpaRepository<Pessoa, Long>, PessoaRepositoryQueries {
-
-	List<Pessoa> findByFuncaoPessoa_Setor_Id(Long setor_id);
 
 	// Query Methods SpringJPA
 	// Pessoa findBy(Long cpt, String cpf);

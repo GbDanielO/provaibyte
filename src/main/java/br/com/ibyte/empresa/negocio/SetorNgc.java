@@ -28,28 +28,38 @@ public class SetorNgc {
 	@Transactional
 	public Setor criar(Setor setor, HttpServletResponse response) {
 
-		Setor setorSalvo = setorRepository.save(setor);
+		try {
+			Setor setorSalvo = setorRepository.save(setor);
 
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}")
-				.buildAndExpand(setorSalvo.getId()).toUri();
+			URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}")
+					.buildAndExpand(setorSalvo.getId()).toUri();
 
-		response.setHeader("Location", uri.toASCIIString());
+			response.setHeader("Location", uri.toASCIIString());
 
-		return setorSalvo;
+			return setorSalvo;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao salvar Setor: " + e.getCause());
+		}
 	}
 
 	@Transactional
 	public Setor atualizar(Long codigo, Setor setor, HttpServletResponse response) {
 
-		Optional<Setor> optional = this.setorRepository.findById(codigo);
+		try {
+			Optional<Setor> optional = this.setorRepository.findById(codigo);
 
-		if (!optional.isPresent()) {
-			throw new EmptyResultDataAccessException(1);
+			if (!optional.isPresent()) {
+				throw new EmptyResultDataAccessException(1);
+			}
+
+			Setor setorSalvo = setorRepository.save(setor);
+
+			return setorSalvo;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao salvar Setor: " + e.getCause());
 		}
-
-		Setor setorSalvo = setorRepository.save(setor);
-
-		return setorSalvo;
 	}
 
 	public void delete(Long codigo) {
