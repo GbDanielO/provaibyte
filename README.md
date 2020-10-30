@@ -19,7 +19,7 @@ basta importar para o postman e executar <br /><br/>
 
 . documente a API usando Swagger **--OK**<br />
 
-. Gere uma imagem docker e envie para o https://hub.docker.com/
+. Gere uma imagem docker e envie para o https://hub.docker.com/     **--OK**
 
 ###Bônus
 . Consumir a api MockApi -
