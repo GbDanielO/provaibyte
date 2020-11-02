@@ -1,5 +1,7 @@
 # provaibyte
 
+## http://localhost:8080/api/swagger-ui.html
+
 . Criar o projeto Spring Boot.                            **--OK**<br />
 . Configurar o banco de dados: H2                         **--OK**<br />
 . O projeto deve conter duas entidades pessoas e setor.   **--OK**<br />
