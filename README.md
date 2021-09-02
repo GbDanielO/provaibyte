@@ -23,7 +23,3 @@ basta importar para o postman e executar <br /><br/>
 
 . Gere uma imagem docker e envie para o https://hub.docker.com/     **--OK**
 
-###Bônus
-. Consumir a api MockApi -
-https://5e61af346f5c7900149bc5b3.mockapi.io/desafio03/employer e atualizar as
-informaçōes do banco de dados
